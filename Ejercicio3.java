@@ -1,15 +1,21 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Ejercicio2 {
+public class Ejercicio3 {
     public static void main(String[] args) {
         System.out.print("Introduzca el número: ");
         int primerNumero = errores(0);
 
-        System.out.println("El número " + primerNumero + primo(primerNumero));
+        int[] arrayPrimos = primo(primerNumero);
+
+        System.out.println("El número " + primerNumero + " tiene los siguiente divisores primos: ");
+
+        for(int i = 1; i < arrayPrimos.length; i++){
+            System.out.print(arrayPrimos[i]);
+        }
     }
 
-    public static String primo(int x) {
+    public static int[] primo(int x) {
         boolean primo = true;
 
         for (int i = 2; i < x; i++) {
@@ -18,11 +24,16 @@ public class Ejercicio2 {
             }
         }
 
-        if (primo) {
-            return " es primo";
-        } else {
-            return " no es primo";
+        int numerosPrimos[] = new int[x];
+
+        if(!primo){
+            for(int i = 1; i < numerosPrimos.length; i++){
+                if(x % i != 0){
+                    numerosPrimos[i] = i;
+                }
+            }
         }
+        return numerosPrimos;
     }
 
     public static int errores(int x) {
