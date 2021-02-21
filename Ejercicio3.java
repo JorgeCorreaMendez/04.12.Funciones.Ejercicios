@@ -6,16 +6,30 @@ public class Ejercicio3 {
         System.out.print("Introduzca el número: ");
         int primerNumero = errores(0);
 
-        int[] arrayPrimos = primo(primerNumero);
+        String[] arrayPrimos = divisoresPrimo(primerNumero);
 
         System.out.println("El número " + primerNumero + " tiene los siguiente divisores primos: ");
 
-        for(int i = 1; i < arrayPrimos.length; i++){
+        for (int i = 1; i < arrayPrimos.length; i++) {
             System.out.print(arrayPrimos[i]);
         }
     }
 
-    public static int[] primo(int x) {
+    public static String[] divisoresPrimo(int x) {
+        String numerosPrimos[] = new String[x];
+
+        for (int i = 1; i < numerosPrimos.length; i++) {
+            if (primo(i)) {
+                numerosPrimos[i] = i + " ";
+            } else {
+                numerosPrimos[i] = "";
+            }
+        }
+
+        return numerosPrimos;
+    }
+
+    public static boolean primo(int x) {
         boolean primo = true;
 
         for (int i = 2; i < x; i++) {
@@ -24,16 +38,11 @@ public class Ejercicio3 {
             }
         }
 
-        int numerosPrimos[] = new int[x];
-
-        if(!primo){
-            for(int i = 1; i < numerosPrimos.length; i++){
-                if(x % i != 0){
-                    numerosPrimos[i] = i;
-                }
-            }
+        if (primo) {
+            return true;
+        } else {
+            return false;
         }
-        return numerosPrimos;
     }
 
     public static int errores(int x) {
